@@ -1,75 +1,113 @@
-body {
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s ease;
 }
 
-.countries-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+:root {
+    --bg-color: #fff;
+    --text-color: #111;
+    --element-bg: #f9f9f9;
 }
 
-.country {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.dark-mode {
+    --bg-color: #202c37;
+    --text-color: #fff;
+    --element-bg: #2b3945;
 }
 
-.theme-toggle {
-    background-color: #4CAF50;
-    color: #fff;
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: var(--element-bg);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+input, select {
+    padding: 0.8rem;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
+    border-radius: 5px;
+    background: var(--element-bg);
+    color: var(--text-color);
+}
+
+/* Grid for countries */
+#countries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 2rem;
+}
+
+/* Country Card */
+.country-card {
+    background: var(--element-bg);
+    padding: 1rem;
+    border-radius: 8px;
     cursor: pointer;
+    transition: transform 0.2s;
 }
 
-.theme-toggle:hover {
-    background-color: 8#0000ff;
-}
-@media (min-width: 768px) {
-    .dark-theme {
-        background-color: #000;
-    }
-
-    .dark-theme .container {
-        background-color: #333;
-        border-color: #555;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    .dark-theme .country {
-        background-color:  #444;
-        border-color: #666;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    .dark-theme .theme-toggle {
-        background-color: #666;
-        color: #fff;
-    }
-
-    .dark-theme .theme-toggle:hover {
-        background-color: #888;
-    }
-    .countries-list {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 20px;
-    }
-
+.country-card:hover {
+    transform: scale(1.05);
 }
 
+.country-card img {
+    width: 100%;
+    border-radius: 6px;
+}
 
+/* Modal */
+#country-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--element-bg);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
